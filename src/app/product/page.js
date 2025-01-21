@@ -1,4 +1,3 @@
-// pages/products/page.js
 import React from "react"
 import ProductForm from "../productsSearch/page"
 import { pesquisaPorReceita } from "../api/searchProducts/router"

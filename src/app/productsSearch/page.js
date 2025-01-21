@@ -1,4 +1,3 @@
-// pages/searchProduto/index.js
 export default function ProductForm() {
   return (
     <form action="/product">
