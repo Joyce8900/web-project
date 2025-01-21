@@ -1,37 +1,26 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect } from 'react';
-import ProductForm from "./productsSearch/page"; 
+import ProductForm from "./productsSearch/page";
+import { fetchRandomRecipes } from "./api/randomProducts/router";
+
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearch, setIsSearch] = useState(false);
 
-  const fetchRandomRecipes = async () => {
-    if (isLoading) return; 
+  const fetchRecipes = async () => {
+    if (isLoading) return;
     setIsLoading(true);
-
-    try {
-      const newRecipes = [];
-      for (let i = 0; i < 10; i++) {
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
-        const data = await response.json();
-        const meal = data.meals[0];
-        newRecipes.push(meal);
-      }
-
-      setRecipes((prevRecipes) => [...prevRecipes, ...newRecipes]);
-    } catch (error) {
-      console.error('Erro ao buscar receitas:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    const newRecipes = await fetchRandomRecipes();
+    setRecipes((prevRecipes) => [...prevRecipes, ...newRecipes]);
+    setIsLoading(false);
   };
 
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) return;
-    fetchRandomRecipes();
+    fetchRecipes();
   };
 
   const handleSearchSubmit = (query) => {
@@ -40,19 +29,20 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchRandomRecipes(); 
+    fetchRecipes();
     window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll); 
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [isLoading]); 
+  }, [isLoading]);
 
   return (
     <div>
-      <div className="p-5 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg flex justify-between items-center">
+      <div className="p-5 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex justify-between items-center">
         <h1 className="text-3xl font-bold">Galeria de Receitas</h1>
+        <ProductForm onSearchSubmit={handleSearchSubmit} />
+        <h1 className="text-3xl font-bold">. . .</h1>
       </div>
-      <ProductForm onSearchSubmit={handleSearchSubmit} />
       <div className="flex flex-wrap justify-center gap-8 p-5">
         {recipes.map((meal, index) => (
           <div key={index} className="max-w-xs bg-white p-4 rounded-lg shadow-lg">
