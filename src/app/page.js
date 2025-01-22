@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="p-5 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex justify-between items-center">
+      <div className="p-5 bg-gradient-to-r from-red-500 to-yellow-500 text-white flex justify-between items-center">
         <h1 className="text-3xl font-bold">Galeria de Receitas</h1>
         <ProductForm onSearchSubmit={handleSearchSubmit} />
         <h1 className="text-3xl font-bold">. . .</h1>
