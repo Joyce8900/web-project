@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import ProductForm from "./productsSearch/page";
+import ProductFilter from "./productFilter/page";
+import ProductCard from './components/productCard'
 import { fetchRandomRecipes } from "./api/randomProducts/router";
 
 const Home = () => {
@@ -43,16 +45,12 @@ const Home = () => {
         <ProductForm onSearchSubmit={handleSearchSubmit} />
         <h1 className="text-3xl font-bold">. . .</h1>
       </div>
+      <ProductFilter/>
       <div className="flex flex-wrap justify-center gap-8 p-5">
         {recipes.map((meal, index) => (
-          <div key={index} className="max-w-xs bg-white p-4 rounded-lg shadow-lg">
-            <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full rounded-lg" />
-            <h3 className="text-xl font-semibold mt-3">{meal.strMeal}</h3>
-            <p className="text-gray-600 text-sm">{meal.strCategory} - {meal.strArea}</p>
-          </div>
+          <ProductCard key={index} meal={meal} />
         ))}
       </div>
-
       {isLoading && <div className="text-center text-xl p-4">Carregando...</div>}
     </div>
   );
