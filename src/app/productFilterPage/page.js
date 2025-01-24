@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getProdutosPorCategoria, getInfCategoria } from '../api/filterCategory/router';
 import ProductCard from '../components/productCard'
 import PageBarCategory from '../components/pageBarCategory'
+import NavBar from '../components/navBar';
 
 export default function ProductFilterPage() {
     const searchParams = useSearchParams();
@@ -41,6 +42,7 @@ export default function ProductFilterPage() {
 
     return (
         <div>
+            <NavBar/>
             {categoriaInfo && (
                 <PageBarCategory categoriaInfo={categoriaInfo} />
             )}
