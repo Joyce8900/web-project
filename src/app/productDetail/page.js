@@ -2,10 +2,9 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-import ProductForm from '../productsSearch/page';
 import Link from 'next/link';
-import { GaleriaReceitas } from '../galeriaReceitas/page';
+import NavBar from '../components/navBar';
+
 
 export default function ProductDetails() {
   const searchParams = useSearchParams();
@@ -15,9 +14,9 @@ export default function ProductDetails() {
 
 
   const handleSearchSubmit = (query) => {
-      setSearchQuery(query)
-      setIsSearch(true)
-    }
+    setSearchQuery(query)
+    setIsSearch(true)
+  }
   useEffect(() => {
     async function fetchData() {
       if (id) {
@@ -34,40 +33,40 @@ export default function ProductDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
-      <div className="p-5 bg-gradient-to-r from-red-500 to-yellow-500 text-white flex justify-between items-center">
-        <GaleriaReceitas />
-        <ProductForm onSearchSubmit={handleSearchSubmit} />
-        <h1 className="text-3xl font-bold">. . .</h1>
-      </div>
-      <div className="max-w-3xl bg-white shadow-lg rounded-lg overflow-hidden">
-        <img
-          src={product.strMealThumb}
-          alt={product.strMeal}
-          className="w-full h-80 object-cover"
-        />
-        <div className="p-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">
-            {product.strMeal}
-          </h1>
-          <p className="text-gray-600 text-lg">
-            <strong>Categoria:</strong> {product.strCategory}
-          </p>
-          <p className="text-gray-600 text-lg">
-            <strong>Área:</strong> {product.strArea}
-          </p>
-          <p className="text-gray-700 text-md mt-4 leading-relaxed">
-            {product.strInstructions}
-          </p>
-          <div className="mt-6 flex justify-center">
-            <a
-              href={product.strYoutube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600 transition"
-            >
-              Ver vídeo da receita
-            </a>
+    <div>
+      <NavBar />
+      <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
+        <div className="max-w-3xl bg-white shadow-lg rounded-lg overflow-hidden">
+          <img
+            src={product.strMealThumb}
+            alt={product.strMeal}
+            className="w-full h-80 object-cover"
+          />
+          <div className="p-6">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
+              {product.strMeal}
+            </h1>
+            <p className="text-gray-600 text-lg">
+              <strong>Categoria:</strong> {product.strCategory}
+            </p>
+            <p className="text-gray-600 text-lg">
+              <strong>Área:</strong> {product.strArea}
+            </p>
+            <p className="text-gray-700 text-md mt-4 leading-relaxed">
+              {product.strInstructions}
+            </p>
+            <div className="mt-6 flex justify-center">
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${
+                  product.strYoutube.split("v=")[1]
+                }`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>

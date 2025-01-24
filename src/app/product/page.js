@@ -26,15 +26,17 @@ const ProductsPage = async ({ searchParams }) => {
       {receitas.length === 0 ? (
         <div className="bg-yellow-500 text-white p-3 rounded my-3">Nenhuma receita encontrada</div>
       ) : (
-        <Link href={`/productDetail?id=${receitas[0].idMeal}`} className="flex flex-wrap justify-center gap-8 p-5 mt-5">
+        <div  className="flex flex-wrap justify-center gap-8 p-5 mt-5">
           {receitas.map((meal) => (
             <div key={meal.idMeal} className="max-w-xs bg-white p-4 rounded-lg shadow-lg">
+            <Link href={`/productDetail?id=${meal.idMeal}`}>
               <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full rounded-lg" />
               <h1 className="text-xl font-semibold mt-3">{meal.strMeal}</h1>
               <h2 className="text-gray-600 text-sm">{meal.strArea}</h2>
+            </Link>
             </div>
           ))}
-        </Link>
+        </div>
       )}
     </div>
   );

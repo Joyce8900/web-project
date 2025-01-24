@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const BASE_URL = "https://www.themealdb.com/api/json/v1/1";
 
@@ -41,13 +42,14 @@ export default function ProductFilter() {
       <div className="w-full flex justify-between items-center space-x-2 overflow-x-auto">
         {categorias.length > 0 ? (
           categorias.map((categoria) => (
-            <button
+            <Link
               key={categoria.strCategory}
-              onClick={() => handleClick(categoria.strCategory)}
+              // onClick={() => handleClick(categoria.strCategory)}
+              href={`/productFilterPage?category=${categoria.strCategory}`}
               className="bg-gray-200 text-black p-1 px-6 rounded-md hover:text-white hover:bg-gray-400 transition duration-300 flex-shrink-0"
             >
               {categoria.strCategory}
-            </button>
+            </Link>
           ))
         ) : (
           <p>Carregando categorias...</p>

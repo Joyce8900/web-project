@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import ProductForm from "./productsSearch/page";
 import ProductFilter from "./productFilter/page";
 import ProductCard from './components/productCard'
 import { fetchRandomRecipes } from "./api/randomProducts/router";
 import Link from 'next/link';
-import { GaleriaReceitas } from './galeriaReceitas/page';
+import NavBar from './components/navBar';
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -27,10 +26,6 @@ const Home = () => {
     fetchRecipes();
   };
 
-  const handleSearchSubmit = (query) => {
-    setSearchQuery(query);
-    setIsSearch(true);
-  };
 
   useEffect(() => {
     fetchRecipes();
@@ -42,11 +37,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="p-5 bg-gradient-to-r from-red-500 to-yellow-500 text-white flex justify-between items-center">
-       <GaleriaReceitas />
-        <ProductForm onSearchSubmit={handleSearchSubmit} />
-        <h1 className="text-3xl font-bold">. . .</h1>
-      </div>
+      <NavBar/>
       <ProductFilter/>
       <div className="flex flex-wrap justify-center gap-8 p-5">
         {recipes.map((meal, index) => (
