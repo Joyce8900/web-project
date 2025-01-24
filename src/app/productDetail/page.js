@@ -4,6 +4,8 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import ProductForm from '../productsSearch/page';
+import Link from 'next/link';
+import { GaleriaReceitas } from '../galeriaReceitas/page';
 
 export default function ProductDetails() {
   const searchParams = useSearchParams();
@@ -34,7 +36,7 @@ export default function ProductDetails() {
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
       <div className="p-5 bg-gradient-to-r from-red-500 to-yellow-500 text-white flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Galeria de Receitas</h1>
+        <GaleriaReceitas />
         <ProductForm onSearchSubmit={handleSearchSubmit} />
         <h1 className="text-3xl font-bold">. . .</h1>
       </div>
