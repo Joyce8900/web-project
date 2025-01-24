@@ -47,7 +47,7 @@ export default function ProductFilterPage() {
             <div className="flex flex-wrap justify-center gap-8 p-5">
                 {produtos.length > 0 ? (
                     produtos.map((produto) => (
-                        <ProductCard meal={produto} />
+                        <ProductCard key={produto.idMeal} meal={produto} />
                     ))
                 ) : (
                     <p>Carregando produtos...</p>
