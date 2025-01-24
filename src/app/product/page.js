@@ -1,6 +1,7 @@
 import React from "react";
 import ProductForm from "../productsSearch/page";
 import { pesquisaPorReceita } from "../api/searchProducts/router";
+import Link from "next/link";
 
 const ProductsPage = async ({ searchParams }) => {
   const { titleSearchKey = "Feijoada" } = searchParams;
@@ -25,7 +26,7 @@ const ProductsPage = async ({ searchParams }) => {
       {receitas.length === 0 ? (
         <div className="bg-yellow-500 text-white p-3 rounded my-3">Nenhuma receita encontrada</div>
       ) : (
-        <div className="flex flex-wrap justify-center gap-8 p-5 mt-5">
+        <Link href={`/productDetail?id=${receitas[0].idMeal}`} className="flex flex-wrap justify-center gap-8 p-5 mt-5">
           {receitas.map((meal) => (
             <div key={meal.idMeal} className="max-w-xs bg-white p-4 rounded-lg shadow-lg">
               <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full rounded-lg" />
@@ -33,7 +34,7 @@ const ProductsPage = async ({ searchParams }) => {
               <h2 className="text-gray-600 text-sm">{meal.strArea}</h2>
             </div>
           ))}
-        </div>
+        </Link>
       )}
     </div>
   );
