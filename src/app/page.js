@@ -6,6 +6,7 @@ import ProductFilter from "./productFilter/page";
 import ProductCard from './components/productCard'
 import { fetchRandomRecipes } from "./api/randomProducts/router";
 import Link from 'next/link';
+import { GaleriaReceitas } from './galeriaReceitas/page';
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -42,7 +43,7 @@ const Home = () => {
   return (
     <div>
       <div className="p-5 bg-gradient-to-r from-red-500 to-yellow-500 text-white flex justify-between items-center">
-        <Link href="/" className="text-3xl font-bold">Galeria de Receitas</Link>
+       <GaleriaReceitas />
         <ProductForm onSearchSubmit={handleSearchSubmit} />
         <h1 className="text-3xl font-bold">. . .</h1>
       </div>
