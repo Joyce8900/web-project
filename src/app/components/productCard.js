@@ -14,7 +14,7 @@ export default function ProductCard({ meal }) {
   const isFavorite = favorites.some((fav) => fav.idMeal === meal.idMeal);
 
   return (
-    <div className="max-w-xs bg-white p-4 rounded-lg shadow-lg flex flex-col justify-between h-full">
+    <div className="max-w-xs bg-white p-4 rounded-lg shadow-lg flex flex-col justify-between h-200">
       {/* Área clicável que leva aos detalhes */}
       <div className="cursor-pointer" onClick={handleClick}>
         <img
